@@ -135,6 +135,7 @@
             this.btDeszyfruj.TabIndex = 10;
             this.btDeszyfruj.Text = "Deszyfruj";
             this.btDeszyfruj.UseVisualStyleBackColor = true;
+            this.btDeszyfruj.Click += new System.EventHandler(this.btDeszyfruj_Click);
             // 
             // Form1
             // 

@@ -66,6 +66,8 @@ namespace TarczaJuliuszaCezara
 
         }
 
+        List<int> zaszyfrowana = new List<int>();
+
         private void btSzyfruj_Click(object sender, EventArgs e)
         {
             tbAfter.Clear();
@@ -73,17 +75,72 @@ namespace TarczaJuliuszaCezara
             foreach(char c in tbBefore.Text)
             {
                 int znakASCI;
-                if (c ==  ' ')
-                    znakASCI = 95; 
-                else
+                if((int)c >33 && (int)c < 48 || (int)c > 57 && (int)c < 65 )
+                {
+                    znakASCI = (int)c;
+                }
+                else if (char.IsUpper(c))
+                {
+                    znakASCI = c + 5;
+                    if (znakASCI > 90)
+                        znakASCI = 65 + (znakASCI - 90 - 1);
+                }
+                else if (char.IsLower(c))
+                {
+                    znakASCI = c + 5;
+                    if (znakASCI > 122)
+                        znakASCI = 97 + (znakASCI - 122 - 1);
+                } 
+                else if (c == ' ')
+                    znakASCI = 95;
+                else 
                     znakASCI = (int)c + 5;
 
+                zaszyfrowana.Add(znakASCI);
                 tbAfter.AppendText(znakASCI.ToString());
                 tbAfter.AppendText(" ");
+                
             }
             
 
 
+
+        }
+
+        private void btDeszyfruj_Click(object sender, EventArgs e)
+        {
+            tbAfter.Clear();
+
+            foreach (int c in zaszyfrowana)
+            {
+                string tekst = "";
+                int znakASCI;
+                if ((int)c > 33 && (int)c < 48 || (int)c > 57 && (int)c < 65 )
+                {
+                    tekst += (char)c;
+                }
+                else if (char.IsUpper((char)c))
+                {
+                    znakASCI = c - 5;
+                    if (znakASCI < 65)
+                        znakASCI = 90 - (65 - znakASCI + 1);
+                    tekst += (char)znakASCI;
+                }
+                else if (char.IsLower((char)c))
+                {
+                    znakASCI = c - 5;
+                    if (znakASCI < 97)
+                        znakASCI = 122 - (97 - znakASCI + 1);
+                    tekst += (char)znakASCI;
+                }
+                else if (c == '_')
+                {
+                    tekst += (char)32;
+                } 
+
+                tbAfter.AppendText(tekst);
+            }
+            zaszyfrowana.Clear();
         }
     }
 }
