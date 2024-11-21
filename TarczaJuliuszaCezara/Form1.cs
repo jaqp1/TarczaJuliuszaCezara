@@ -94,15 +94,15 @@ namespace TarczaJuliuszaCezara
 
                 zaszyfrowana.Add(znakASCI);
                 tbAfter.AppendText(c.ToString());
-                Thread.Sleep(150);
+                //Thread.Sleep(150);
                 tbAfter.Text = tbAfter.Text.Remove(tbAfter.Text.Length - 1);
-                Thread.Sleep(150);
+                //Thread.Sleep(150);
                 tbAfter.AppendText(znakASCI.ToString());
-                Thread.Sleep(150);
+                //Thread.Sleep(150);
                 //tbAfter.AppendText(" ");
 
             }
-            
+
 
 
 
@@ -110,13 +110,13 @@ namespace TarczaJuliuszaCezara
 
         private void btDeszyfruj_Click(object sender, EventArgs e)
         {
-            tbAfter.Clear();
-            int i = 1;
+            //tbAfter.Clear();
             //zaszyfrowana.Reverse();
+            string tekst = "";
             foreach (int c in zaszyfrowana)
             {
                 
-                string tekst = "";
+                
                 int znakASCI;
                 if ((int)c > 33 && (int)c < 48 || (int)c > 57 && (int)c < 65 || (int)c > 90 && (int)c < 95 || (int)c > 122)
                 {
@@ -139,17 +139,22 @@ namespace TarczaJuliuszaCezara
                 else if (c == '_')
                 {
                     tekst += (char)32;
-                }
-
-                
-
-                //tbAfter.Text = tbAfter.Text.Remove(tbAfter.Text.Length - i);
-                //Thread.Sleep(150);
-                //tbAfter.AppendText(tekst);
-                //Thread.Sleep(150);
-                //i++;
-                tbAfter.AppendText(tekst);
+                }     
             }
+            //for (int i = 0; i < zaszyfrowana.Count; i++)
+            //{
+            //    tbAfter.AppendText(zaszyfrowana[i].ToString());
+            //}
+            //tbAfter.Text = zaszyfrowana + "";
+            int j = zaszyfrowana.Count - 1;
+            for (int i = 0; i < zaszyfrowana.Count; i++)
+            {
+                tbAfter.Text = tbAfter.Text.Remove(i, zaszyfrowana[i].ToString().Length).Insert(i, tekst[i].ToString());
+                j--;
+                Application.DoEvents();
+                Thread.Sleep(250);
+            }
+
             zaszyfrowana.Clear();
         }
 
