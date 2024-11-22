@@ -67,7 +67,7 @@ namespace TarczaJuliuszaCezara
         private void btSzyfruj_Click(object sender, EventArgs e)
         {
             tbAfter.Clear();
-           
+            int i = 0;
             foreach(char c in tbBefore.Text)
             {
                 int znakASCI;
@@ -93,19 +93,31 @@ namespace TarczaJuliuszaCezara
                     znakASCI = (int)c + (int)numKey.Value;
 
                 zaszyfrowana.Add(znakASCI);
-                tbAfter.AppendText(c.ToString());
-                //Thread.Sleep(150);
-                tbAfter.Text = tbAfter.Text.Remove(tbAfter.Text.Length - 1);
-                //Thread.Sleep(150);
+                //tbAfter.AppendText(c.ToString());
+                //Thread.Sleep(100);
+                //tbAfter.Text = tbAfter.Text.Remove(tbAfter.Text.Length - 1);
+                //Thread.Sleep(100);
+                tbBefore.SelectAll();
+                tbBefore.SelectionColor = Color.Black;
+                tbBefore.SelectionBackColor = Color.White;
                 tbAfter.AppendText(znakASCI.ToString());
-                //Thread.Sleep(150);
+                tbBefore.Select(i, 1);
+                tbBefore.SelectionColor = Color.White;
+                tbBefore.SelectionBackColor = Color.Black;
+
+                tbPozycja.Text = i.ToString();
+                i++;
+                Application.DoEvents();
+                Thread.Sleep(250);
                 //tbAfter.AppendText(" ");
 
             }
+            tbBefore.SelectionBackColor = Color.White;
+            tbPozycja.Clear() ;
 
 
 
-
+            MessageBox.Show("Szyfrowanie zakończone");
         }
 
         private void btDeszyfruj_Click(object sender, EventArgs e)
@@ -151,11 +163,21 @@ namespace TarczaJuliuszaCezara
             {
                 tbAfter.Text = tbAfter.Text.Remove(i, zaszyfrowana[i].ToString().Length).Insert(i, tekst[i].ToString());
                 j--;
+                tbBefore.SelectAll();
+                tbBefore.SelectionColor = Color.Black;
+                tbBefore.SelectionBackColor = Color.White;
+                tbBefore.Select(i, 1);
+                tbBefore.SelectionColor = Color.White;
+                tbBefore.SelectionBackColor = Color.Black;
+                tbPozycja.Text = i.ToString();
                 Application.DoEvents();
                 Thread.Sleep(250);
             }
+            tbBefore.SelectionBackColor = Color.White;
+            tbPozycja.Clear();
 
             zaszyfrowana.Clear();
+            MessageBox.Show("Deszyfrowanie zakończone");
         }
 
         private void btWczytaj_Click(object sender, EventArgs e)
@@ -234,5 +256,52 @@ namespace TarczaJuliuszaCezara
                 MessageBox.Show("Wystąpił wyjątek: " + ex.Message);
             }
         }
+
+        private void btCompare_Click(object sender, EventArgs e)
+        {
+            int zgodne = 0, nzgodne = 0;
+            for(int i = 0; i < tbBefore.Text.Length; i++)
+            {
+                tbPozycja.Text = i.ToString();
+                //tbBefore.SelectAll();
+                //tbBefore.SelectionColor = Color.Black;
+                //tbAfter.SelectAll();
+                //tbAfter.SelectionColor = Color.Black;
+                if (tbAfter.Text[i] == tbBefore.Text[i])
+                {
+                    tbBefore.Select(i, 1);
+                    tbBefore.SelectionColor = Color.Green;
+
+                    tbAfter.Select(i, 1);
+                    tbAfter.SelectionColor = Color.Green;
+                    zgodne++;
+                }
+                else
+                {
+
+                    tbBefore.Select(i, 1);
+                    tbBefore.SelectionColor = Color.Red;
+
+                    tbAfter.Select(i, 1);
+                    tbAfter.SelectionColor = Color.Red;
+                    nzgodne++;
+                }
+                Application.DoEvents();
+                Thread.Sleep(100);
+            }
+            tbBefore.SelectAll();
+            tbBefore.SelectionColor = Color.Black;
+            tbAfter.SelectAll();
+            tbAfter.SelectionColor = Color.Black;
+            if (nzgodne == 0) {
+                MessageBox.Show("Wszystkie litery są zgodne z tekstem źródłowym.");
+            }
+            else
+            {
+                MessageBox.Show("Znaleziono niezgodność liter!");
+            }
+            tbPozycja.Clear();
+        }
+
     }
 }

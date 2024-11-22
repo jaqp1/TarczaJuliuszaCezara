@@ -28,8 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.tbBefore = new System.Windows.Forms.TextBox();
-            this.tbAfter = new System.Windows.Forms.TextBox();
             this.tbFileToEncode = new System.Windows.Forms.TextBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.btPlikDoZaszyfrowania = new System.Windows.Forms.Button();
@@ -48,27 +46,13 @@
             this.btSciezkaOdszyfrowany = new System.Windows.Forms.Button();
             this.tbOdszyfrowanyPlik = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.tbBefore = new System.Windows.Forms.RichTextBox();
+            this.tbAfter = new System.Windows.Forms.RichTextBox();
+            this.btCompare = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
+            this.tbPozycja = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.numKey)).BeginInit();
             this.SuspendLayout();
-            // 
-            // tbBefore
-            // 
-            this.tbBefore.Location = new System.Drawing.Point(449, 28);
-            this.tbBefore.Multiline = true;
-            this.tbBefore.Name = "tbBefore";
-            this.tbBefore.ReadOnly = true;
-            this.tbBefore.Size = new System.Drawing.Size(529, 232);
-            this.tbBefore.TabIndex = 0;
-            this.tbBefore.Text = "Zawartość pliku przed operacjami...";
-            // 
-            // tbAfter
-            // 
-            this.tbAfter.Location = new System.Drawing.Point(449, 282);
-            this.tbAfter.Multiline = true;
-            this.tbAfter.Name = "tbAfter";
-            this.tbAfter.Size = new System.Drawing.Size(529, 200);
-            this.tbAfter.TabIndex = 1;
-            this.tbAfter.Text = "Zaszyfrowana/Odszyfrowana zawartość pliku...";
             // 
             // tbFileToEncode
             // 
@@ -130,9 +114,9 @@
             // 
             // btSzyfruj
             // 
-            this.btSzyfruj.Location = new System.Drawing.Point(24, 439);
+            this.btSzyfruj.Location = new System.Drawing.Point(30, 439);
             this.btSzyfruj.Name = "btSzyfruj";
-            this.btSzyfruj.Size = new System.Drawing.Size(109, 43);
+            this.btSzyfruj.Size = new System.Drawing.Size(91, 43);
             this.btSzyfruj.TabIndex = 8;
             this.btSzyfruj.Text = "Szyfruj";
             this.btSzyfruj.UseVisualStyleBackColor = true;
@@ -140,9 +124,9 @@
             // 
             // btDeszyfruj
             // 
-            this.btDeszyfruj.Location = new System.Drawing.Point(139, 439);
+            this.btDeszyfruj.Location = new System.Drawing.Point(127, 439);
             this.btDeszyfruj.Name = "btDeszyfruj";
-            this.btDeszyfruj.Size = new System.Drawing.Size(109, 43);
+            this.btDeszyfruj.Size = new System.Drawing.Size(91, 43);
             this.btDeszyfruj.TabIndex = 10;
             this.btDeszyfruj.Text = "Deszyfruj";
             this.btDeszyfruj.UseVisualStyleBackColor = true;
@@ -230,11 +214,58 @@
             this.label3.TabIndex = 19;
             this.label3.Text = "Klucz szyfrowania:";
             // 
+            // tbBefore
+            // 
+            this.tbBefore.Location = new System.Drawing.Point(449, 21);
+            this.tbBefore.Name = "tbBefore";
+            this.tbBefore.Size = new System.Drawing.Size(529, 209);
+            this.tbBefore.TabIndex = 20;
+            this.tbBefore.Text = "Zawartość pliku przed operacjami...";
+            // 
+            // tbAfter
+            // 
+            this.tbAfter.Location = new System.Drawing.Point(449, 274);
+            this.tbAfter.Name = "tbAfter";
+            this.tbAfter.Size = new System.Drawing.Size(529, 209);
+            this.tbAfter.TabIndex = 21;
+            this.tbAfter.Text = "Zaszyfrowana/Odszyfrowana zawartość pliku...";
+            // 
+            // btCompare
+            // 
+            this.btCompare.Location = new System.Drawing.Point(224, 442);
+            this.btCompare.Name = "btCompare";
+            this.btCompare.Size = new System.Drawing.Size(91, 40);
+            this.btCompare.TabIndex = 22;
+            this.btCompare.Text = "Porównaj";
+            this.btCompare.UseVisualStyleBackColor = true;
+            this.btCompare.Click += new System.EventHandler(this.btCompare_Click);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(446, 244);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(140, 16);
+            this.label4.TabIndex = 23;
+            this.label4.Text = "Przetwarzana pozycja:";
+            // 
+            // tbPozycja
+            // 
+            this.tbPozycja.Location = new System.Drawing.Point(592, 241);
+            this.tbPozycja.Name = "tbPozycja";
+            this.tbPozycja.Size = new System.Drawing.Size(44, 22);
+            this.tbPozycja.TabIndex = 24;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1003, 504);
+            this.Controls.Add(this.tbPozycja);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.btCompare);
+            this.Controls.Add(this.tbAfter);
+            this.Controls.Add(this.tbBefore);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.btZapiszOdszyfrowany);
             this.Controls.Add(this.label2);
@@ -252,8 +283,6 @@
             this.Controls.Add(this.lbPlikDoZaszyfrowania);
             this.Controls.Add(this.btPlikDoZaszyfrowania);
             this.Controls.Add(this.tbFileToEncode);
-            this.Controls.Add(this.tbAfter);
-            this.Controls.Add(this.tbBefore);
             this.Name = "Form1";
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.numKey)).EndInit();
@@ -263,9 +292,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.TextBox tbBefore;
-        private System.Windows.Forms.TextBox tbAfter;
         private System.Windows.Forms.TextBox tbFileToEncode;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.Button btPlikDoZaszyfrowania;
@@ -284,6 +310,11 @@
         private System.Windows.Forms.Button btSciezkaOdszyfrowany;
         private System.Windows.Forms.TextBox tbOdszyfrowanyPlik;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.RichTextBox tbBefore;
+        private System.Windows.Forms.RichTextBox tbAfter;
+        private System.Windows.Forms.Button btCompare;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox tbPozycja;
     }
 }
 
