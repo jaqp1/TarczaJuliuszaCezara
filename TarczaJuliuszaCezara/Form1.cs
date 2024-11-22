@@ -157,7 +157,7 @@ namespace TarczaJuliuszaCezara
             //{
             //    tbAfter.AppendText(zaszyfrowana[i].ToString());
             //}
-            //tbAfter.Text = zaszyfrowana + "";
+            //tbAfter.Text = zaszyfrowana + "" ;
             int j = zaszyfrowana.Count - 1;
             for (int i = 0; i < zaszyfrowana.Count; i++)
             {
